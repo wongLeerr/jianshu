@@ -1,16 +1,46 @@
 import React from 'react'
 import { CSSTransition } from 'react-transition-group'
 import { connect } from 'react-redux'
+import { actionCreators } from './store'
 import {
     HeaderWrapper,
     Logo,
     Nav,
     NavItem,
     NavSearch,
+    SearchInfo,
+    SearchInfoTitle,
+    SearchInfoSwitch,
+    SearchInfoItem,
+    SearchInfoList,
     Addtion,
     Button,
     SearchWrapper
 } from './style'
+
+
+const getListArea = (show) => {
+    if (show) {
+        return (
+            <SearchInfo>
+                <SearchInfoTitle>
+                    热门搜索
+                    <SearchInfoSwitch>换一批</SearchInfoSwitch>
+                </SearchInfoTitle>
+                <SearchInfoList>
+                    <SearchInfoItem>教育</SearchInfoItem>
+                    <SearchInfoItem>科技</SearchInfoItem>
+                    <SearchInfoItem>娱乐</SearchInfoItem>
+                    <SearchInfoItem>javascript</SearchInfoItem>
+                    <SearchInfoItem>生活方式</SearchInfoItem>
+                    <SearchInfoItem>运动</SearchInfoItem>
+                </SearchInfoList>
+            </SearchInfo>
+        )
+    } else {
+        return null
+    }
+}
 
 const Header = (props) => {
     return (
@@ -36,6 +66,7 @@ const Header = (props) => {
                         ></NavSearch>
                     </CSSTransition>
                     <i className={props.focused ? 'focused iconfont' : 'iconfont'}>&#xe60c;</i>
+                    {getListArea(props.focused)}
                 </SearchWrapper>
             </Nav>
             <Addtion>
@@ -53,7 +84,7 @@ const Header = (props) => {
 const mapStateToProps = (state) => {
     // 返回出去的对象即为UI组件收到的props
     return {
-        focused: state.focused
+        focused: state.get('header').get('focused')
     }
 }
 
@@ -63,18 +94,12 @@ const mapDispatchToProps = (dispatch) => {
 
         // 处理顶部搜索框focus事件
         handleInputFocus() {
-            const action = {
-                type: "search_focus"
-            }
-            dispatch(action)
+            dispatch(actionCreators.searchFocus())
         },
 
         // 处理顶部搜索框的blur事件
         handleInputBlur() {
-            const action = {
-                type: "search_focus"
-            }
-            dispatch(action)
+            dispatch(actionCreators.searchFocus())
         }
     }
 }

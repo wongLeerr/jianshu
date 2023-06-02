@@ -3,6 +3,7 @@ import List from './components/List.jsx'
 import Recommend from './components/Recommend.jsx'
 import Topic from './components/Topic.jsx'
 import Writer from './components/Writer.jsx'
+import Download from './components/Download.jsx'
 import {
     HomeWrapper,
     HomeLeft,
@@ -21,6 +22,7 @@ class Home extends Component {
                 </HomeLeft>
                 <HomeRight>
                     <Recommend></Recommend>
+                    <Download></Download>
                     <Writer></Writer>
                 </HomeRight>
             </HomeWrapper>

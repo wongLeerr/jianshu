@@ -90,7 +90,7 @@ export const NavSearch = styled.input.attrs({
     font-size:14px;
     background:#eee;
     color:#999;
-    &::placeholder:{
+    &::placeholder{
         color:#999;
     }
     &.focused {
@@ -106,6 +106,7 @@ export const SearchInfo = styled.div`
     top:56px;
     width:240px;
     padding:0 20px;
+    background: #fff;
     box-shadow: 0 0 8px rgba(0,0,0,.2);
 `
 
@@ -121,12 +122,12 @@ export const SearchInfoSwitch = styled.span`
     float:right;
     font-size:13px;
     .spin {
-        dispaly:block;
+        display:block;
         float:left;
         font-size:12px;
         margin-right:4px;
         transition:all 0.2s ease-in;
-        transition-origin:center center;
+        transform-origin: center center;
     }
 `
 

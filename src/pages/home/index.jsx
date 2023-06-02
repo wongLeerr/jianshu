@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import List from './components/List.jsx'
 import Recommend from './components/Recommend.jsx'
 import Topic from './components/Topic.jsx'
 import Writer from './components/Writer.jsx'
 import Download from './components/Download.jsx'
+import { actionCreators } from './store'
 import {
     HomeWrapper,
     HomeLeft,
@@ -28,6 +30,24 @@ class Home extends Component {
             </HomeWrapper>
         )
     }
+
+    componentDidMount() {
+        this.props.getHomeInfo()
+    }
 }
 
-export default Home
+const mapStateToProps = () => {
+    return {
+
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        getHomeInfo() {
+            dispatch(actionCreators.fetchHomeData())
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home)

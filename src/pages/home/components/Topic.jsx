@@ -6,19 +6,18 @@ import {
     MoreTopic
 } from '../style'
 
-
 class Topic extends Component {
     render() {
+
         const { topicList } = this.props
-        const tempTopicList = topicList.toJS()
         return (
             <TopicWrapper>
                 {
-                    tempTopicList.map((item) => {
+                    topicList.map((item) => {
                         return (
-                            <TopicItem key={item.id}>
-                                <img className="topic-pic" src={item.imgUrl} alt="" />
-                                {item.title}
+                            <TopicItem key={item.get('id')}>
+                                <img className="topic-pic" src={item.get('imgUrl')} alt="" />
+                                {item.get('title')}
                             </TopicItem>
                         )
                     })
@@ -39,7 +38,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-
     }
 }
 

@@ -15,8 +15,8 @@ export default class App extends Component {
         <Globalstyle></Globalstyle>
         <GlobalFontStyle></GlobalFontStyle>
         <Provider store={store}>
-          <Header></Header>
           <BrowserRouter>
+            <Header></Header>
             <Routes>
               <Route path="/" Component={Home}></Route>
               <Route path="/detail" Component={Detail}></Route>

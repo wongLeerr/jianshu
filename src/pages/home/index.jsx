@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import List from './components/List.jsx'
 import Recommend from './components/Recommend.jsx'
@@ -9,11 +9,21 @@ import { actionCreators } from './store'
 import {
     HomeWrapper,
     HomeLeft,
-    HomeRight
+    HomeRight,
+    BackTop
 } from './style'
 
 
-class Home extends Component {
+class Home extends PureComponent {
+
+    handleBackTop() {
+        window.scrollTo(0, 0)
+    }
+
+    bindEvents() {
+        window.addEventListener('scroll', this.props.hanleScroll)
+    }
+
     render() {
         return (
             <HomeWrapper>
@@ -27,18 +37,22 @@ class Home extends Component {
                     <Download></Download>
                     <Writer></Writer>
                 </HomeRight>
+                {
+                    this.props.showBackTopBtn ? <BackTop onClick={this.handleBackTop}>↑</BackTop> : null
+                }
             </HomeWrapper>
         )
     }
 
     componentDidMount() {
         this.props.getHomeInfo()
+        this.bindEvents()
     }
 }
 
-const mapStateToProps = () => {
+const mapStateToProps = (state) => {
     return {
-
+        showBackTopBtn: state.get('home').get('showBackTopBtn')
     }
 }
 
@@ -46,6 +60,15 @@ const mapDispatchToProps = (dispatch) => {
     return {
         getHomeInfo() {
             dispatch(actionCreators.fetchHomeData())
+        },
+
+        // 滚动事件的回调
+        hanleScroll() {
+            if (document.documentElement.scrollTop >= 400) {
+                dispatch(actionCreators.changeBackTop(true))
+            } else {
+                dispatch(actionCreators.changeBackTop(false))
+            }
         }
     }
 }

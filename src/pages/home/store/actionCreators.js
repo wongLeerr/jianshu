@@ -11,6 +11,14 @@ const createHomeAction = (data) => {
     }
 }
 
+const addHomeList = (data, page) => {
+    return {
+        type: actionTypes.ADD_HOME_LIST,
+        data: fromJS(data),
+        nextPage: page
+    }
+}
+
 export const fetchHomeData = () => {
     return (dispatch) => {
         // 发请求
@@ -22,5 +30,26 @@ export const fetchHomeData = () => {
             .catch((err) => {
                 console.log(err);
             })
+    }
+}
+
+export const createLoadMore = (page) => {
+    return (dispatch) => {
+        // 发请求获取更多数据
+        axios.get('/api/homeList.json?page=' + page)
+            .then((res) => {
+                // 修改store中的数据
+                dispatch(addHomeList(res.data.data, page + 1))
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+    }
+}
+
+export const changeBackTop = (show) => {
+    return {
+        type: actionTypes.CHANGE_BACKTOP,
+        show: show
     }
 }

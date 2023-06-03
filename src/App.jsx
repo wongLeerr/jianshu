@@ -5,6 +5,7 @@ import { GlobalFontStyle } from './statics/iconfont/iconfont'
 import Header from './commen/header/index'
 import Home from "./pages/home";
 import Detail from "./pages/detail";
+import Login from './pages/login'
 import store from "./store";
 import { Provider } from 'react-redux'
 
@@ -18,8 +19,9 @@ export default class App extends Component {
           <BrowserRouter>
             <Header></Header>
             <Routes>
-              <Route path="/" Component={Home}></Route>
-              <Route path="/detail" Component={Detail}></Route>
+              <Route path="/" exact Component={Home}></Route>
+              <Route path="/detail/:id" exact Component={Detail}></Route>
+              <Route path="/login" exact Component={Login}></Route>
             </Routes>
           </BrowserRouter>
         </Provider>

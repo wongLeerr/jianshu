@@ -167,6 +167,10 @@ export const Button = styled.div`
         color:#ec6149;
     }
     &.writting {
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
         color:#fff;
         background:#ec6149;
     }

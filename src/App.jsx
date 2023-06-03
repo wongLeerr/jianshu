@@ -6,6 +6,7 @@ import Header from './commen/header/index'
 import Home from "./pages/home";
 import Detail from "./pages/detail";
 import Login from './pages/login'
+import Write from "./pages/write";
 import store from "./store";
 import { Provider } from 'react-redux'
 
@@ -22,6 +23,7 @@ export default class App extends Component {
               <Route path="/" exact Component={Home}></Route>
               <Route path="/detail/:id" exact Component={Detail}></Route>
               <Route path="/login" exact Component={Login}></Route>
+              <Route path="/write" exact Component={Write}></Route>
             </Routes>
           </BrowserRouter>
         </Provider>

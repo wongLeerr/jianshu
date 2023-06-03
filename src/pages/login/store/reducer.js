@@ -8,11 +8,14 @@ const defaultState = fromJS({
 const reducer = (state = defaultState, action) => {
     switch (action.type) {
         case actionTypes.LOGIN_SUCCESS:
-            return state.set('login', true)
+            return state.set('login', action.login)
+        case actionTypes.LOGOUT:
+            return state.set('login', action.logout)
         default:
             return state
     }
 }
+
 
 
 export default reducer

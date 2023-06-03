@@ -26,3 +26,11 @@ export const login = (account, password) => {
     }
 
 }
+
+
+export const logout = () => {
+    return {
+        type: actionTypes.LOGOUT,
+        logout: false
+    }
+}
